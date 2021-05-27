@@ -15,15 +15,15 @@ import {setTextFilter} from './actions/filters'
 
 const store = configureStore()
 
-const expenseOne = store.dispatch(addExpense({description:'water Bill',  amount:4500 }))
-const expenseTwo = store.dispatch(addExpense({description :'Gas Bill', createdAt:1000}))
-const expenseThree = store.dispatch(addExpense({description :'Rent',  amount:109500}))
+// const expenseOne = store.dispatch(addExpense({description:'water Bill',  amount:4500 }))
+// const expenseTwo = store.dispatch(addExpense({description :'Gas Bill', createdAt:1000}))
+// const expenseThree = store.dispatch(addExpense({description :'Rent',  amount:109500}))
 
 
 
-const state = store.getState()
-const visibleExpenses = getVisibleExpenses(state.expenses, state.filter)
-console.log(visibleExpenses)
+// const state = store.getState()
+// const visibleExpenses = getVisibleExpenses(state.expenses, state.filter)
+// console.log(visibleExpenses)
 
 
 const jsx = (

@@ -12,9 +12,12 @@ import getVisibleExpenses from './selectors/expenses'
 import {addExpense} from './actions/expenses'
 import {setTextFilter} from './actions/filters'
 
+// if (process.env.NODE_ENV !== 'production') {
+//     console.log('Looks like we are in development mode!');
+//   }
 
 const store = configureStore()
-
+console.log('testing')
 // const expenseOne = store.dispatch(addExpense({description:'water Bill',  amount:4500 }))
 // const expenseTwo = store.dispatch(addExpense({description :'Gas Bill', createdAt:1000}))
 // const expenseThree = store.dispatch(addExpense({description :'Rent',  amount:109500}))

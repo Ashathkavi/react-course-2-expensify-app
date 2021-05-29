@@ -4,3 +4,5 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
 Enzyme.configure({
     adapter:new Adapter
 })
+jest.setTimeout(30000)
+require('dotenv').config({path:'.env.test'})

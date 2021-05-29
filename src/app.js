@@ -5,6 +5,8 @@ import {Provider} from 'react-redux'
 import './styles/styles.scss'
 import 'normalize.css/normalize.css'
 import "react-datepicker/dist/react-datepicker.css";
+import "./firebase/firebase"
+//import './playground/promises'
 
 import AppRouter from './routers/AppRouter'
 import configureStore from './store/configureStore'
@@ -17,7 +19,7 @@ import {setTextFilter} from './actions/filters'
 //   }
 
 const store = configureStore()
-console.log('testing')
+//console.log('testing')
 // const expenseOne = store.dispatch(addExpense({description:'water Bill',  amount:4500 }))
 // const expenseTwo = store.dispatch(addExpense({description :'Gas Bill', createdAt:1000}))
 // const expenseThree = store.dispatch(addExpense({description :'Rent',  amount:109500}))

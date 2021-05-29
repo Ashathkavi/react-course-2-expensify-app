@@ -4,11 +4,11 @@ import {AddExpensePage} from '../../components/AddExpensePage'
 import expenses from '../fixtures/expenses'
 import ExpenseForm from '../../components/ExpenseForm'
 
-let addExpenseSpy, historySpy, wrapper;
+let startAddExpenseSpy, historySpy, wrapper;
 beforeEach(()=>{
-    addExpenseSpy = jest.fn()
+    startAddExpenseSpy = jest.fn()
     historySpy = {push:jest.fn()}
-    wrapper = shallow(<AddExpensePage history={historySpy} addExpense={addExpenseSpy}/>)
+    wrapper = shallow(<AddExpensePage history={historySpy} startAddExpense={startAddExpenseSpy}/>)
 })
 
 test('should render AddExpensePage correctly', ()=>{
@@ -19,6 +19,6 @@ test('should render AddExpensePage correctly', ()=>{
 test('should handle onSubmit', ()=>{
     wrapper.find(ExpenseForm).prop('onSubmit')(expenses[0])
     expect(historySpy.push).toHaveBeenLastCalledWith('/')
-    expect(addExpenseSpy).toHaveBeenLastCalledWith(expenses[0])
+    expect(startAddExpenseSpy).toHaveBeenLastCalledWith(expenses[0])
     
 })

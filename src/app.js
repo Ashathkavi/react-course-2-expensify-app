@@ -11,8 +11,10 @@ import "./firebase/firebase"
 import AppRouter from './routers/AppRouter'
 import configureStore from './store/configureStore'
 import getVisibleExpenses from './selectors/expenses'
-import {addExpense} from './actions/expenses'
+import {addExpense, startSetExpenses} from './actions/expenses'
 import {setTextFilter} from './actions/filters'
+import {startSetText} from './actions/expenses'
+
 
 // if (process.env.NODE_ENV !== 'production') {
 //     console.log('Looks like we are in development mode!');
@@ -37,5 +39,10 @@ const jsx = (
     </Provider>
 );
 
+ReactDOM.render( <p>Loading......</p>, document.getElementById('app'))
 
-ReactDOM.render( jsx, document.getElementById('app'))
+
+store.dispatch(startSetExpenses()).then(()=>{
+    ReactDOM.render( jsx, document.getElementById('app'))
+})
+

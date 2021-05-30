@@ -28,12 +28,33 @@ export const removeExpense = ({id} = {}) => ({
     type:'REMOVE_EXPENSE',
     id
 })
+
+
+//ASYNC REMOVE_EXPENSES
+
+export const startRemoveExpenses = ({id}={}) => {
+    return (dispatch)=>{
+        //const { description = '', note= '', amount=0, createdAt=0 } = expenseData
+        //const expense = {description , note, amount, createdAt}
+        return database.ref(`expenses/${id}`).remove()
+            .then(()=>{
+                dispatch(removeExpense({id}))
+            }).catch((error)=>{
+                console.log("Remove failed: " + error.message)
+            })                     
+    }
+}
+
+
+
 //EDIT_EXPENSES
 export const editExpense = (id, updates) => ({
     type:'EDIT_EXPENSE',
     id,
     updates
 })
+
+
 
 
 //SET_EXPENSES

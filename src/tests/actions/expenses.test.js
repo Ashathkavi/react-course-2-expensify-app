@@ -1,4 +1,4 @@
-import {startAddExpense, addExpense, removeExpense, editExpense, setExpenses, startSetExpenses} from '../../actions/expenses'
+import {startAddExpense, addExpense, removeExpense, editExpense, setExpenses, startSetExpenses, startRemoveExpenses} from '../../actions/expenses'
 import expenses from '../fixtures/expenses'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
@@ -22,6 +22,29 @@ test('should setup remove expense action object', ()=>{
         id:'123abc'
     })
 })
+
+
+test('should remove the expenses from the firebase', (done)=>{
+    const store  = createMockStore({})
+    //const expenses_set = expenses.map((expense)=> ({id:expect.any(String),...expense }))
+    
+    store.dispatch(startRemoveExpenses({id:expenses[0].id})).then(()=>{
+        const actions = store.getActions()
+        expect(actions[0]).toEqual({
+            type:'REMOVE_EXPENSE',
+            id:expenses[0].id
+            //expenses:expenses_set
+        })
+        return database.ref(`expenses/${expenses[0].id}`).once('value')
+    }).then((snapshot)=>{
+        console.log(snapshot.val())
+        expect(snapshot.val()).toBeFalsy()
+        done()
+    })
+        
+})  
+
+
 
 
 test('should setup edit expense action object', ()=>{
@@ -112,12 +135,13 @@ test('should setup set expense object with data', ()=>{
 
 test('should fetch the expenses from the firebase', ()=>{
     const store  = createMockStore({})
-    const expenses_set = expenses.map((expense)=> ({id:expect.any(String),...expense }))
+    //const expenses_set = expenses.map((expense)=> ({id:expect.any(String),...expense }))
     store.dispatch(startSetExpenses(expenses)).then(()=>{
         const action = store.getActions()
         expect(action[0]).toEqual({
             type:'SET_EXPENSES',
-            expenses:expenses_set
+            expenses
+            //expenses:expenses_set
         })
         return database.ref(`expenses`).once('value')
 
@@ -126,7 +150,10 @@ test('should fetch the expenses from the firebase', ()=>{
         expect(snapshot.val()).toEqual(expenses)
         done()
     })
-}, 10000) 
+}, 10000)  
+
+
+
 
 
 

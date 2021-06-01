@@ -14,7 +14,7 @@ if(process.env.NODE_ENV === 'test'){
 
 module.exports = {
     //const CSSExtract = new MiniCssExtractPlugin('styles.css')
-    entry:'./src/app.js',
+    entry:['babel-polyfill','./src/app.js'],
     output:{
         path:path.join(__dirname, 'public', 'dist'),
         filename:'bundle.js'
@@ -33,6 +33,7 @@ module.exports = {
 
         })
     ],
+    
     module:{
         rules:[{
             loader:'babel-loader',
@@ -44,17 +45,25 @@ module.exports = {
                 {
                     loader:MiniCssExtractPlugin.loader
                 }, {
-                    loader:'css-loader',
-                    options:{
-                        sourceMap:true
+                    loader: 'css-loader',
+                    options: {
+                      sourceMap: true
                     }
                 },{
-                    loader:'sass-loader',
-                    options:{
-                        sourceMap:true
+                    loader: 'sass-loader',
+                    options: {
+                      sourceMap: true
                     }
                 }
             ]
+        },{
+            test: /\.(png|jpe?g|gif)$/i,
+            use: [
+                {
+                    loader: 'file-loader',
+                }
+            ]
         }]
-    }
+    },
+    
 }

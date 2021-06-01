@@ -14,6 +14,7 @@ import getVisibleExpenses from './selectors/expenses'
 import {addExpense, startSetExpenses} from './actions/expenses'
 import {login, logout} from './actions/auth'
 import {startSetText} from './actions/expenses'
+import LoadingPage from './components/LoadingPage'
 
 
 // if (process.env.NODE_ENV !== 'production') {
@@ -48,7 +49,7 @@ const renderApp = () => {
     }
 }
 
-ReactDOM.render( <p>Loading......</p>, document.getElementById('app'))
+ReactDOM.render( <LoadingPage/>, document.getElementById('app'))
 
 
 

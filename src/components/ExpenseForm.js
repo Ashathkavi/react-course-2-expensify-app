@@ -59,38 +59,43 @@ class ExpenseForm extends React.Component{
     render(){
         //console.log(this.state.description)
         return(
-            <div>
-            {this.state.error && <p>{this.state.error}</p>}
-                <form onSubmit = {this.onSubmit}>
-                    <input 
-                        typr="text"
-                        placeholder="Description"
-                        autoFocus
-                        value={this.state.description}
-                        onChange={this.onDescriptionChange}                        
-                    />
-                    <input
-                        type="text"
-                        placeholder="Amount"
-                        value={this.state.amount}
-                        onChange={this.onAmountChange}                        
+            
+            <form className="form" onSubmit = {this.onSubmit}>
+                {this.state.error && <p className="form__error">{this.state.error}</p>}
+                <input 
+                    typr="text"
+                    placeholder="Description"
+                    autoFocus 
+                    className="text-input"
+                    value={this.state.description}
+                    onChange={this.onDescriptionChange}                        
+                />
+                <input
+                    type="text"
+                    placeholder="Amount"
+                    className="text-input"
+                    value={this.state.amount}
+                    onChange={this.onAmountChange}                        
 
-                    />
-                    <DatePicker
-                        selected = {this.state.createdAt}
-                        onChange = {this.onDateChange}
-                        closeOnScroll={e => e.target === document}
-                    />
-                    <textarea 
-                        placeholder="Add a note for your expense (optional)"
-                        value={this.state.note}
-                        onChange={this.onNoteChange}
-                    >
-                    </textarea>
-                    <button>Add Expense</button>
+                />
+                <DatePicker
+                    selected = {this.state.createdAt}
+                    onChange = {this.onDateChange}
+                    closeOnScroll={e => e.target === document}
+                    className="datepicker"
+                />
+                <textarea 
+                    placeholder="Add a note for your expense (optional)"
+                    className="textarea"
+                    value={this.state.note}
+                    onChange={this.onNoteChange}
+                >
+                </textarea>
+                <div >
+                    <button className="button">Save Expense</button>
+                </div>               
 
-                </form>
-            </div>
+            </form>
         )
     }
 }
